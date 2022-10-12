@@ -1,15 +1,25 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-function randomInt(min,max) {
+function randomInt(min, max) {
+  if (!max) {
+    max = min
+    min = 0
+}
 
-return Math.floor(math.random()*(max-min)+min)
+var rand = Math.random()
+return Math.floor(min*(1 - rand) + rand*max)
+}
 
+function getRandomItem(list) {
+  return list[randomInt(0, list.length -1)]
 }
 
 
+
+
 function generatePassword() {
-  var userInput= window.prompt ("How many characters would you like in your password?")
+  var userInput = window.prompt ("How many characters would you like in your password?")
 
 
   var passwordLength = parseInt(userInput)
@@ -19,9 +29,10 @@ window.alert("Thats not a #!")
 return
   }
 
-  if (passwordLength < 8 || passwordLength > 128){
+  if (passwordLength < 8 || passwordLength > 128) {
 
 window.alert ("Password must be atleast 8 characters and no more than 128 characters long?")
+return
 
   }
 
@@ -46,14 +57,16 @@ window.alert ("Password must be atleast 8 characters and no more than 128 charac
 
   if (userWantsLower===true){optioncart.push(lowercaseList)}
 
-  var generatePassword =""
+  var generatedPassword =""
   for (var i = 0; i < passwordLength; i++)  {
-   var randomList = getRandomItem(optioncart)
+   var randomlist = getRandomItem(optioncart)
+   var randomchar = getRandomItem(randomlist)
+   generatedPassword+= randomchar
 
-   var randomchar = getRandomItem(randomList)
-
-   console.log(randomchar)
+ 
   } 
+
+  return generatedPassword
 
 
 
